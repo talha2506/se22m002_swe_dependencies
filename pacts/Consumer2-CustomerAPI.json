@@ -1,0 +1,72 @@
+{
+  "consumer": {
+    "name": "Consumer2"
+  },
+  "interactions": [
+    {
+      "description": "A valid request for all customers with their aggregated balance",
+      "providerStates": [
+        {
+          "name": "customers exist"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/Customers/withSumOfBalance"
+      },
+      "response": {
+        "body": [
+          {
+            "aggregatedBalance": 89300,
+            "name": "Max Mustermann"
+          },
+          {
+            "aggregatedBalance": 89300,
+            "name": "Maxime Musterfrau"
+          },
+          {
+            "aggregatedBalance": 89300,
+            "name": "Max Mustervater"
+          },
+          {
+            "aggregatedBalance": 89300,
+            "name": "Maxime Mustermama"
+          },
+          {
+            "aggregatedBalance": 89300,
+            "name": "Max Musteropa"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.3.11",
+      "models": "0.4.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "CustomerAPI"
+  }
+}

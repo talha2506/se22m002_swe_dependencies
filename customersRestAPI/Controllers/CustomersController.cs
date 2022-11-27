@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using customersRestAPI.Entities;
-using customersRestAPI.Data;
 using customersRestAPI.DTOs;
 
 namespace customersRestAPI.Controllers
@@ -29,7 +23,7 @@ namespace customersRestAPI.Controllers
             return await _context.Customers.ToListAsync();
         }
 
-        // GET: api/CustomersBasicInfoOnly
+        // GET: api/Customers/basicInfo
         [HttpGet("basicInfo")]
         public async Task<ActionResult<IEnumerable<CustomerBasicDTO>>> GetCustomersBasicInfoOnly()
         {
@@ -38,9 +32,9 @@ namespace customersRestAPI.Controllers
                 .ToListAsync();
         }
 
-        // GET: api/withSumOfBalance
+        // GET: api/Customers/withSumOfBalance
         [HttpGet("withSumOfBalance")]
-        public async Task<ActionResult<IEnumerable<CustomerWithSumOfBalanceDTO>>> GetCustomersWithSumOfBalanceDTO()
+        public async Task<ActionResult<IEnumerable<CustomerWithSumOfBalanceDTO>>> GetCustomersWithSumOfBalance()
         {
             return await _context.Customers
                 .Select(x => CustomerToCustomerWithSumOfBalanceDTO(x))
